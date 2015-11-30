@@ -6,14 +6,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class Payment {
-  private final ArrayList<Employee> employees = new ArrayList<>();
+  private final ArrayList<HasCost> hasCosts = new ArrayList<>();
   
-  public void addEmployee(Employee employee) {
-    Objects.requireNonNull(employee);
-    employees.add(employee);
+  public void addHasCost(HasCost hasCost) {
+    Objects.requireNonNull(hasCost);
+    hasCosts.add(hasCost);
   }
 
-  public List<Employee> getAllEmployees() {
-    return Collections.unmodifiableList(employees);
+  public List<HasCost> getAllEmployees() {
+    return Collections.unmodifiableList(hasCosts);
+  }
+
+  public long getPayment(){
+    return hasCosts.stream().mapToLong((x)-> x.getCost()).sum();
   }
 }
